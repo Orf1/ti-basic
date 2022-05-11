@@ -12,7 +12,6 @@ Text(25,15,"Orfeas and Colten.")
 
 //Delay + loading bar
 Shade(Ymin,Ymax,30,~30,4,1)
-Shade(Ymin,Ymax,25,~25,4,1)
 
 //Setting animation position
 0->H
@@ -48,15 +47,14 @@ End
 //Restting canvas
 ClrDraw
 
-//Delay + loading bar
-Shade(Ymin,Ymax,30,~30,4,1)
-
-//Another reset
-ClrDraw
-
 //User input prompt
-Disp ""
-Disp ""
+Disp "--------------"
+Disp "--------------"
+Disp "--------------"
+Disp "--------------"
+Disp "--------------"
+Disp "--------------"
+
 Disp "Firework Show!"
 Disp ""
 Disp "Made by: "
@@ -153,7 +151,10 @@ Text(15,25,"GOODBYE!")
 Text(25,22,"Thank you!")
 
 //Delay and loading bar
-Shade(Ymin,Ymax,30,~30,4,1)
+Shade(Ymin,Ymax,32,~32,3,1)
 
 //Black screen
-Shade(Ymin,Ymax,~32,32,3,1)
+Shade(Ymin,Ymax,~32,32,3,8)
+
+//Final reset!!!!
+ClrDraw
