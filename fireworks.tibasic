@@ -7,8 +7,10 @@ ClrDraw
 AxesOff
 
 //Initial credits screen
+
 Text(15,25,"FIREWORKS")
-Text(25,15,"Orfeas and Colten.")
+Text(25,13,"By Orfeas and Colten.")
+Text(55,30,"Loading")
 
 //Delay + loading bar
 Shade(Ymin,Ymax,30,~30,4,1)
@@ -18,7 +20,7 @@ Shade(Ymin,Ymax,30,~30,4,1)
 16->V
 
 //Main animation loop
-For(L,0,30,5)
+For(L,0,32,4)
 	//Shape of animation
 	0+L->O
 	5+L->T
@@ -107,6 +109,22 @@ For(I,1,N)
 	Line([B](3,1),[B](3,2),[B](3,1)-E,[B](3,2)+E)
 	Line([B](3,1),[B](3,2),[B](3,1)+E,[B](3,2)-E)
 
+	//Random stars
+	For(L,0,8)
+		//Generates random location
+		(rand*64)-32->H
+		rand*32->V
+
+		//Star size
+		1->E
+		
+		//Draws mini star
+		Line(H,V,H+E,V+E)
+		Line(H,V,H-E,V-E)
+		Line(H,V,H+E,V-E)
+		Line(H,V,H-E,V+E)
+	End
+
 	//Loading rocket end position into H,V
 	[B](3,1)->H
 	[B](3,2)->V
@@ -153,8 +171,42 @@ Text(25,22,"Thank you!")
 //Delay and loading bar
 Shade(Ymin,Ymax,32,~32,3,1)
 
+//Setting animation position
+0->H
+16->V
+
+//Another reset lol
+ClrDraw
+
+//Main animation loop
+For(L,0,32,4)
+	//Shape of animation
+	0+L->O
+	5+L->T
+	10+L->F
+
+	//Loading shape into matrix
+	[[~F,F][O,T][F,F][T,O][F,~F][O,~T][~F,~F][~T,O]]->[J]
+
+	//Loading offsets into matrix
+	[[H,V][H,V][H,V][H,V][H,V][H,V][H,V][H,V]]->[I]
+
+	//Applying offset to matrix
+	[J]+[I]->[J]
+
+	//Drawing animation
+	Line([J](1,1),[J](1,2),[J](2,1),[J](2,2))
+	Line([J](2,1),[J](2,2),[J](3,1),[J](3,2))
+	Line([J](3,1),[J](3,2),[J](4,1),[J](4,2))
+	Line([J](4,1),[J](4,2),[J](5,1),[J](5,2))
+	Line([J](5,1),[J](5,2),[J](6,1),[J](6,2))
+	Line([J](6,1),[J](6,2),[J](7,1),[J](7,2))
+	Line([J](7,1),[J](7,2),[J](8,1),[J](8,2))
+	Line([J](8,1),[J](8,2),[J](1,1),[J](1,2))
+End
+
 //Black screen
-Shade(Ymin,Ymax,~32,32,3,8)
+Shade(Ymin,Ymax,~32,32,3,1)
 
 //Final reset!!!!
 ClrDraw
