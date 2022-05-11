@@ -1,0 +1,159 @@
+//Basic setup
+ClrDraw
+~32->Xmin
+32->Xmax
+0->Ymin
+32->Ymax
+AxesOff
+
+//Initial credits screen
+Text(15,25,"FIREWORKS")
+Text(25,15,"Orfeas and Colten.")
+
+//Delay + loading bar
+Shade(Ymin,Ymax,30,~30,4,1)
+Shade(Ymin,Ymax,25,~25,4,1)
+
+//Setting animation position
+0->H
+16->V
+
+//Main animation loop
+For(L,0,30,5)
+	//Shape of animation
+	0+L->O
+	5+L->T
+	10+L->F
+
+	//Loading shape into matrix
+	[[~F,F][O,T][F,F][T,O][F,~F][O,~T][~F,~F][~T,O]]->[J]
+
+	//Loading offsets into matrix
+	[[H,V][H,V][H,V][H,V][H,V][H,V][H,V][H,V]]->[I]
+
+	//Applying offset to matrix
+	[J]+[I]->[J]
+
+	//Drawing animation
+	Line([J](1,1),[J](1,2),[J](2,1),[J](2,2))
+	Line([J](2,1),[J](2,2),[J](3,1),[J](3,2))
+	Line([J](3,1),[J](3,2),[J](4,1),[J](4,2))
+	Line([J](4,1),[J](4,2),[J](5,1),[J](5,2))
+	Line([J](5,1),[J](5,2),[J](6,1),[J](6,2))
+	Line([J](6,1),[J](6,2),[J](7,1),[J](7,2))
+	Line([J](7,1),[J](7,2),[J](8,1),[J](8,2))
+	Line([J](8,1),[J](8,2),[J](1,1),[J](1,2))
+End
+
+//Restting canvas
+ClrDraw
+
+//Delay + loading bar
+Shade(Ymin,Ymax,30,~30,4,1)
+
+//Another reset
+ClrDraw
+
+//User input prompt
+Disp ""
+Disp ""
+Disp "Firework Show!"
+Disp ""
+Disp "Made by: "
+Disp "Orfeas + Colten"
+Disp ""
+Disp "How many would"
+Disp "you like?"
+Prompt N
+
+//Loading rocket shape into matrix
+[[~1,0][1,0][0,2]]->[A]
+
+//Rocket launch animation
+For(I,1,N)
+
+	//Copying rocket for later use
+	[A]->[B]
+
+	//Generating random angle
+	(rand-.5)*2->R
+
+	//Applying random angle to rocket
+	[[R,1][R,1][R,1]]->[C]
+
+	//Launching rocket
+	For(K,0,25)
+		Line([B](1,1),[B](1,2),[B](2,1),[B](2,2))
+		Line([B](2,1),[B](2,2),[B](3,1),[B](3,2))
+		Line([B](3,1),[B](3,2),[B](1,1),[B](1,2))
+		//Applying offset to rocket
+		[B]+[C]->[B]
+	End
+
+	//Storing rocket end location
+	[[[B](3,1),[B](3,1)]->[D]
+
+	//Initial burst size
+	20->E
+
+	//Exploding lines animation
+	Line([B](3,1),[B](3,2),[B](3,1),[B](3,2)+E)
+	Line([B](3,1),[B](3,2),[B](3,1),[B](3,2)-E)
+	Line([B](3,1),[B](3,2),[B](3,1)+E,[B](3,2))
+	Line([B](3,1),[B](3,2),[B](3,1)-E,[B](3,2))
+
+	//Smaller mini burst
+	E/2->E
+	Line([B](3,1),[B](3,2),[B](3,1)+E,[B](3,2)+E)
+	Line([B](3,1),[B](3,2),[B](3,1)-E,[B](3,2)-E)
+	Line([B](3,1),[B](3,2),[B](3,1)-E,[B](3,2)+E)
+	Line([B](3,1),[B](3,2),[B](3,1)+E,[B](3,2)-E)
+
+	//Loading rocket end position into H,V
+	[B](3,1)->H
+	[B](3,2)->V
+
+	//Star animation
+	For(L,0,30,5)
+		//Center
+		0+L->O
+
+		//Inner triangle
+		5+L->T
+
+		//Outer triangle
+		10+L->F
+
+		//Loading shape into matrix
+		[[~F,F][O,T][F,F][T,O][F,~F][O,~T][~F,~F][~T,O]]->[J]
+
+		//Loading offsets into matrix
+		[[H,V][H,V][H,V][H,V][H,V][H,V][H,V][H,V]]->[I]
+
+		//Applying offsets to matrix
+		[J]+[I]->[J]
+
+		//Drawing shape
+		Line([J](1,1),[J](1,2),[J](2,1),[J](2,2))
+		Line([J](2,1),[J](2,2),[J](3,1),[J](3,2))
+		Line([J](3,1),[J](3,2),[J](4,1),[J](4,2))
+		Line([J](4,1),[J](4,2),[J](5,1),[J](5,2))
+		Line([J](5,1),[J](5,2),[J](6,1),[J](6,2))
+		Line([J](6,1),[J](6,2),[J](7,1),[J](7,2))
+		Line([J](7,1),[J](7,2),[J](8,1),[J](8,2))
+		Line([J](8,1),[J](8,2),[J](1,1),[J](1,2))
+	End
+
+	//Another reset lol
+	ClrDraw
+End
+
+//Goodbye screen
+Text(15,25,"GOODBYE!")
+Text(25,22,"Thank you!")
+
+//Delay and loading bar
+Shade(Ymin,Ymax,30,~30,4,1)
+
+//Black screen
+Shade(Ymin,Ymax,~32,32,3,1)
