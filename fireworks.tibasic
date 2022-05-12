@@ -1,3 +1,5 @@
+//Fireworks project by Orfeas Magoulas and Colten Garfield
+
 //Basic setup
 ClrDraw
 ~32->Xmin
