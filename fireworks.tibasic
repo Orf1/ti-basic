@@ -106,6 +106,10 @@ For(I,1,N)
 	Line([B](3,1),[B](3,2),[B](3,1)-E,[B](3,2)+E)
 	Line([B](3,1),[B](3,2),[B](3,1)+E,[B](3,2)-E)
 
+	//Adds entropy
+	rand->H
+	rand->H
+	
 	//Random stars
 	For(L,0,8)
 		//Generates random location
@@ -204,8 +208,7 @@ End
 
 //Shade screen black
 For(A,Ymin,Ymax,DeltaY)
-	Horizontal 
-	A
+	Horizontal A
 End
 
 //Final reset!!!!
