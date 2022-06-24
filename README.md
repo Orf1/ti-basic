@@ -1,3 +1,4 @@
 # ti-basic
 
-ABC d
+ABC I d
+Jj
